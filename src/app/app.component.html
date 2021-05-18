@@ -1,0 +1,84 @@
+<section id="back-FGR" class="fade-in-image-bg-fgr"></section>
+
+<body>
+
+    <!-- Si el usuario esta logueado -->
+
+    <div *ngIf="isLoggedIn() ; else notLogin ">
+
+        <div class="fgr-container">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-start">
+                        <img src="../assets/img/logo-fgr.png" width="70%" class="fade-in-logo">
+                    </div>
+                    <div class="col align-self-center">
+
+                    </div>
+                    <div class="col align-self-end">
+
+                    </div>
+                    <div class="col align-self-end">
+                        <button type="button" class="btn btn-light" (click)="logout() " *ngIf="isLoggedIn() ">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Iniciaste Sesión Correctamente</h3>
+
+            <span>Bienvenido {{getName()}}</span>
+
+            <button (click)="callProfile() " [routerLink]="[ '/restricted-page'] " routerLinkActive="true ">ACEPTAR</button>
+
+            <router-outlet></router-outlet>
+
+            <tr class="fade-in-logo">
+                <!-- <td><a [routerLink]="[ '/public-page'] " routerLinkActive="true ">[PUBLIC-PAGE]</a></td> -->
+                <!-- <td><a [routerLink]="[ '/restricted-page'] " routerLinkActive="true " *ngIf="isLoggedIn() ">[RESTRICTED-PAGE]</a></td> -->
+                <button type="button" class="btn btn-light" (click)="login() " *ngIf="!isLoggedIn() ">Iniciar Sesión</button>
+            </tr>
+
+        </div>
+
+    </div>
+
+    <!-- Si el usuario no esta logueado (carga inicial) -->
+
+    <ng-template #notLogin>
+
+        <div class="fgr-container">
+
+            <img src="../assets/img/logo-fgr.png" width="45%" class="fade-in-logo">
+
+            <router-outlet></router-outlet>
+
+            <div class="container">
+
+                <div class="box">
+
+                    <div class="title">
+                        <span class="block"></span>
+                        <h1>C O P L A D I I<span></span></h1>
+                    </div>
+
+                    <div class="role">
+                        <div class="block"></div>
+                        <p>S A M - S I E R</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <tr class="fade-in-logo">
+                <!-- <td><a [routerLink]="[ '/public-page'] " routerLinkActive="true ">[PUBLIC-PAGE]</a></td> -->
+                <!-- <td><a [routerLink]="[ '/restricted-page'] " routerLinkActive="true " *ngIf="isLoggedIn() ">[RESTRICTED-PAGE]</a></td> -->
+                <button type="button" class="btn btn-light" (click)="login() " *ngIf="!isLoggedIn() ">Iniciar Sesión</button>
+                <!-- <button type="button" class="btn btn-light" (click)="logout() " *ngIf="isLoggedIn() ">Cerrar Sesión</button> -->
+            </tr>
+
+        </div>
+
+    </ng-template>
+
+</body>
